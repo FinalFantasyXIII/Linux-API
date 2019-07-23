@@ -1,15 +1,15 @@
-#**Linux Posix 线程 I**
+# **Linux Posix 线程 I**
 
-##**_Introduction_**
+## **_Introduction_**
     本章介绍linux 线程和pthread的使用
 +
 +
 +
 
-##**_API_**
+## **_API_**
 >pthread 函数返回值都以 0 为成功，整数值为失败
 
-####Pthread API 数据类型
+#### **_Pthread API 数据类型_**
 
 数据类型             | 含义
 --------------------| ----------------------
@@ -21,7 +21,7 @@ pthread_key_t       | 线程特有数据的键
 pthread_once_t      | 一次性初始化控制上下文（call once）
 pthread_attr_t      | 线程的属性对象，决定了新线程的各种属性
 
-#### Pthread API
+#### **_Pthread API_**
 + 线程创建
     >int pthread_create(pthread_t* _**thread**_ , const pthread_attr_t* **_attr_** , void*(* **_start_**)(void*) , void* **_args_**);
     + thread : 线程标识，线程id
@@ -51,7 +51,7 @@ pthread_attr_t      | 线程的属性对象，决定了新线程的各种属性
     + pthread_detach(pthread_self())可将线程变为unjoinable状态
     + 在创建线程时指定attr参数也可以将线程变为unjoinable状态，不过过于麻烦一般不用
     
-##**_DEMO_**
+## **_DEMO_**
 + demo 1 线程的创建等待操作
 ```
 struct person{
