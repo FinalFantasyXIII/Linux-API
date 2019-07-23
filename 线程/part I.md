@@ -23,13 +23,13 @@ pthread_attr_t      | 线程的属性对象，决定了新线程的各种属性
 
 #### **_Pthread API_**
 + 线程创建
-    >int pthread_create(pthread_t* _**thread**_ , const pthread_attr_t* **_attr_** , void*(* **_start_**)(void*) , void* **_args_**);
+    >**int** pthread_create(pthread_t* _**thread**_ , const pthread_attr_t* **_attr_** , void*(* **_start_**)(void*) , void* **_args_**);
     + thread : 线程标识，线程id
     + attr   : 线程属性，指定线程是否可加入
     + start  : 线程工作函数，返回值和参数都是void* 类型
     + args   : 传入start的参数
 + 线程终止
-    >void pthread_exit(void* **_retval_**);
+    >**void** pthread_exit(void* **_retval_**);
     + retval : 指定的线程返回值
     + retval 不应该是栈区变量，如果进程的主线程调用了pthread_exit而非exit或return，那么其他线程将继续执行
 + 线程ID
@@ -37,12 +37,12 @@ pthread_attr_t      | 线程的属性对象，决定了新线程的各种属性
     + 线程获取自身线程ID
     + pthread_equal(phtread_t , pthread_t) 用于线程ID的比较
 + 等待线程
-    >int pthread_join(pthread_t **_thread_** , void** **_retval_**);
+    >**int** pthread_join(pthread_t **_thread_** , void** **_retval_**);
     + thread : 要等待的线程ID
     + retval : 如果不为NULL,那么就会保存线程返回的状态
     + 这个函数的功能类似进程中的wait函数，都是用来回收等待对象的资源的。但线程有一点不同于进程，线程可以自己释放资源
 + 线程分离
-    >int pthread_detach(pthread_t **_thread_**);
+    >**int** pthread_detach(pthread_t **_thread_**);
     + 使线程脱离出去，不再受其他线程管控，一般用于分离一些独立任务。
     + 当其他线程调用exit()或主线程 return时，属于当前进程的所有线程都会销毁
 + 线程的可加入和不可加入状态
