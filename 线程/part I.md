@@ -1,11 +1,14 @@
 #**Linux Posix 线程 I**
+
 ##**_Introduction_**
     本章介绍linux 线程和pthread的使用
 +
 +
 +
+
 ##**_API_**
 >pthread 函数返回值都以 0 为成功，整数值为失败
+
 ####Pthread API 数据类型
 
 数据类型             | 含义
@@ -47,6 +50,7 @@ pthread_attr_t      | 线程的属性对象，决定了新线程的各种属性
     + 若是unjoinable状态的线程，这些资源在线程函数退出时或pthread_exit时自动会被释放。
     + pthread_detach(pthread_self())可将线程变为unjoinable状态
     + 在创建线程时指定attr参数也可以将线程变为unjoinable状态，不过过于麻烦一般不用
+    
 ##**_DEMO_**
 + demo 1 线程的创建等待操作
 ```
