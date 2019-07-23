@@ -1,5 +1,5 @@
 #**Linux Posix 线程 I**
-##_**Introduction**_
+##**_Introduction_**
     本章介绍linux 线程和pthread的使用
 +
 +
