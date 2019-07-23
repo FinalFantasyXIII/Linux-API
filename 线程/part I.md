@@ -33,7 +33,7 @@ pthread_attr_t      | 线程的属性对象，决定了新线程的各种属性
     + retval : 指定的线程返回值
     + retval 不应该是栈区变量，如果进程的主线程调用了pthread_exit而非exit或return，那么其他线程将继续执行
 + 线程ID
-    >pthread_t pthread_self();
+    >**pthread_t** pthread_self();
     + 线程获取自身线程ID
     + pthread_equal(phtread_t , pthread_t) 用于线程ID的比较
 + 等待线程
