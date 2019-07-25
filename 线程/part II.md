@@ -1,10 +1,10 @@
 # **_Linux Posix 线程 II_**
-##_**Introduction**_
+## _**Introduction**_
 + 死锁的出现和解决方法
     + 不同函数对同一个锁进行了lock操作，然后出现在锁区域互相调用的情况。这是死锁常见的场景
     + 按照一定层次顺序加锁，如t1 t2 永远按照先t1后t2的形式进行加锁
     + 对第一个锁进行lock，后面的锁进行try_lock操作，如果后面任意一个锁lock失败，则主动unlock前面所有已经lock的锁
-##**_API_**
+## **_API_**
 >pthread 函数返回值都以 0 为成功，整数值为失败
 + 线程加锁
     > **_int_** pthread_mutex_lock(pthread_mutex_t* **_mutex_**);
@@ -35,7 +35,7 @@
     + pthread_cond_wait 和 pthread_cond_timewait 无其他差异，除了后者指定了时间限制
     + 当调用pthread_cond_wait后，顺序执行1.解锁互斥量mutex 2.阻塞线程，直至收到另一线程的cond信号 3.重新锁定mutex
     + pthread_cond_wait应包含于while条件判断的循环中。线程醒来后会执行处于条件判断后的指令，这时应重新检查条件，正确则执行循环外的，不正确应重新调用wait挂起
-##**_DEMO_**
+## **_DEMO_**
 + demo 1 : 创建1000个线程运行20秒，统计每个线程抢到锁的次数
 ```
 static int status = 1;
