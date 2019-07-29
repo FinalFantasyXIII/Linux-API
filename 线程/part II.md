@@ -155,3 +155,61 @@ int main() {
     system("pause");
     return 0;
 }
++ demo 3 ：使用条件变量代替join
+```
+enum RS{
+    RUN,
+    STOP,
+    JOINED
+};
+
+struct Attribute {
+    thread t;
+    RS s;
+    int num;
+};
+
+static vector<Attribute> va(10);
+static int unjoined = 0;
+static int alive_num = 10;
+static mutex mt;
+static condition_variable cv;
+
+void work_func(int index){
+    this_thread::sleep_for(seconds(va[index].num));
+    {
+        lock_guard<mutex> lg(mt);
+        cout << index << ":" << this_thread::get_id() << endl;
+        va[index].s = RS::STOP;
+        unjoined++;
+    }
+    cv.notify_one();
+}
+
+int main() {
+    for(int i=0;i<va.size();i++){
+        va[i].s = RS::RUN;
+        va[i].num = i+10;
+        va[i].t = thread{work_func,i};
+    }
+    sleep(3);
+    cout << "start ..." <<endl;
+    while(alive_num > 0){
+        unique_lock<mutex> ul(mt);
+        cv.wait(ul,[](){
+            return unjoined;
+        });
+        for(auto& i : va){
+            if(i.s == RS::STOP){
+                i.t.join();
+                i.s = RS::JOINED;
+                alive_num--;
+                unjoined--;
+            }
+        }
+    }
+    cout << "over" <<endl;
+    system("pause");
+    return 0;
+}
+```
