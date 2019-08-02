@@ -4,6 +4,7 @@
 + pthread_once函数和c++ 11提供的call_once函数可以解决一次性初始化问题
 + 线程特有数据可以在不改变原来的api的情况下实现线程安全
 + 线程特有数据就是为每个线程分配一个独立互不干扰的内存，让每个线程在这段内存内干活
++ 线程局部存储  __thread会为每个线程拷贝一份内存，比线程特有数据容易使用很多
 ## **_API_**
 + Pthread 的call_once 函数
     > **_int_** pthread_once(pthread_once_t* **_once_control_**,void(***_init_**)(void));
