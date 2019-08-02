@@ -1,4 +1,4 @@
-# **_Linux Posix 线程 II_**
+# **_Linux Posix 线程 III_**
 ## _**Introduction**_
 + 线程安全函数是指可以同时供给多个线程安全调用的函数
 + pthread_once函数和c++ 11提供的call_once函数可以解决一次性初始化问题
