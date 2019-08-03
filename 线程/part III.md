@@ -7,21 +7,21 @@
 + 线程局部存储  __thread会为每个线程拷贝一份内存，比线程特有数据容易使用很多
 ## **_API_**
 + Pthread 的call_once 函数
-    > **_int_** pthread_once(pthread_once_t* **_once_control_**,void(***_init_**)(void));
-    + init : 资源初始化函数，在线程函数调用pthread_once确保所有线程只会调用一次init
+    + **_int_** pthread_once(pthread_once_t* **_once_control_**,void(***_init_**)(void));
+        + init : 资源初始化函数，在线程函数调用pthread_once确保所有线程只会调用一次init
 + 获取线程特有数据key
-    > **_int_** pthread_key_create(pthread_key_t* **_key_**,void(***_destory_**)(void*));
-    + key与线程的关系是 一对多
-    + destory : 销毁线程特有数据的析构函数，参数是一个指向堆内存指针
-    + 当线程返回时，只要key关联的所有线程的内存不为空，那就会调用destory销毁它们
+    + **_int_** pthread_key_create(pthread_key_t* **_key_**,void(***_destory_**)(void*));
+        + key与线程的关系是 一对多
+        + destory : 销毁线程特有数据的析构函数，参数是一个指向堆内存指针
+        + 当线程返回时，只要key关联的所有线程的内存不为空，那就会调用destory销毁它们
 
 + 设置线程特有数据
-    > int pthread_setspecific(pthread_key_t key,const void* buf);
-    + 绑定key与buf
+    + int pthread_setspecific(pthread_key_t key,const void* buf);
+        + 绑定key与buf
 
 + 获取线程特有数据
-    > void* pthread_getspecific(pthread_key_t key);
-    + 根据key获取绑定的buf
+    + void* pthread_getspecific(pthread_key_t key);
+        + 根据key获取绑定的buf
 ## **_DEMO_**
 + 使用案例
 ```
