@@ -5,15 +5,18 @@
 + 取消一个线程
     > **_int_** pthread_cancel(pthread_t **_thread_**);
     + 取消指定的thread的线程，当pthread_cancel调用后立即返回，取消的指令会传达给指定线程，接下来线程的走向由其他因素决定。
+    
 + 设置线程是否启用线程取消
     > **_int_** pthread_setcancelstate(int **_state_** , int* **_oldstate_**);
     + **_state_** ：需要设定的状态 ，**_oldstate_** ：老状态
     + PTHREAD_CANCEL_DISABLE ：禁用线程取消，如果线程需要一气呵成，则禁用
     + PTHREAD_CANCEL_ENABLE ：启用线程取消，这是默认缺省值
+    
     > **_int_** pthread_setcanceltype(int **_type_** , int* **_oldtype_**);
     + 在 _pthread_setcancelstate_ 中若设置了启用线程取消，则type可以取以下的值：
     + PTHREAD_CANCEL_DEFERED ：到达线程取消点取消，例如一些sleep printf的库函数
     + PTHREAD_CANCEL_ASYNCHRONOUS ：可以在任意点取消
+    
 + 制造线程取消点
     > void pthread_testcancel(void);
     + 为线程制造一个线程取消点，防止一些高密度耗时计算由于缺少线程取消点，在接收到线程取消指令后无法取消的问题。
