@@ -1,6 +1,6 @@
 # **_Linux Posix 线程 IIII_**
 ## _**Introduction**_
-
++ 
 ## **_API_**
 + 取消一个线程
     > **_int_** pthread_cancel(pthread_t **_thread_**);
@@ -21,7 +21,8 @@
 ## **_DEMO_**
 + 线程取消使用方法
 ```
-// 由于线程取消点不清晰缘故，所以日后需要取消的线程函数中建议加上pthread_testcancel()
+// 由于线程取消点不清晰缘故，所以需要取消的线程函数中建议加上pthread_testcancel()
+// 不用pthread_testcancel时也可以使用pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, nullptr)代替
 void* test(void* args){
     //下面是开启禁用线程取消，默认是可以被取消的
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, nullptr);
