@@ -7,34 +7,34 @@
 ## **_API_**
 >pthread 函数返回值都以 0 为成功，整数值为失败
 + 线程加锁
-    > **_int_** pthread_mutex_lock(pthread_mutex_t* **_mutex_**);
-    + mutex : 锁变量，一般对于被加锁的线程来说它是一个相对全局的变量
+    + **_int_** pthread_mutex_lock(pthread_mutex_t* **_mutex_**);
+        + mutex : 锁变量，一般对于被加锁的线程来说它是一个相对全局的变量
 + 线程解锁
-    > **_int_** pthread_mutex_unlock(pthread_mutex_t* **_mutex_**);
-    + unlock 和 lock相互成对
+    + **_int_** pthread_mutex_unlock(pthread_mutex_t* **_mutex_**);
+        + unlock 和 lock相互成对
 + 锁初始化
-    >**_int_** pthread_mutex_init(pthread_mutex_t* **_mutex_**,pthread_mutexattr_t* **_attr_**);
-    + mutex : 需要初始化的锁对象
-    + attr : 指定锁的属性
-    + 需要调用该函数的锁的种类有:栈锁，堆锁，不使用默认属性的全局锁
+    + **_int_** pthread_mutex_init(pthread_mutex_t* **_mutex_**,pthread_mutexattr_t* **_attr_**);
+        + mutex : 需要初始化的锁对象
+        + attr : 指定锁的属性
+        + 需要调用该函数的锁的种类有:栈锁，堆锁，不使用默认属性的全局锁
 + 锁销毁
-    >**_int_** pthread_mutex_destory(pthread_mutex_t* **_mutex_**);
-    + 与锁的初始化配对
+    + **_int_** pthread_mutex_destory(pthread_mutex_t* **_mutex_**);
+        + 与锁的初始化配对
 + 条件变量发送信号
-    >**_int_** pthread_cond_signal(pthread_cond_t* **_cond_**);
+    + **_int_** pthread_cond_signal(pthread_cond_t* **_cond_**);
     
-    >**_int_** pthread_cond_broadcast(pthread_cond_t* **_cond_**);
-    + cond : 指定的条件变量
-    + pthread_cond_signal 是唤醒一个线程让其获取cpu执行权
-    + pthread_cond_broadcast 是唤醒所有线程让其竞争获取cpu执行权
-    + n对一情况下用singal , n对n的情况下就用broadcast
+    + **_int_** pthread_cond_broadcast(pthread_cond_t* **_cond_**);
+        + cond : 指定的条件变量
+        + pthread_cond_signal 是唤醒一个线程让其获取cpu执行权
+        + pthread_cond_broadcast 是唤醒所有线程让其竞争获取cpu执行权
+        + n对一情况下用singal , n对n的情况下就用broadcast
 + 条件变量等待信号
-    >**_int_** pthread_cond_wait(pthread_cond_t* **_cond_**,pthread_mutex_t* **_mutex_**);
+    + **_int_** pthread_cond_wait(pthread_cond_t* **_cond_**,pthread_mutex_t* **_mutex_**);
     
-    >**_int_** pthread_cond_timewait(pthread_cond_t* **_cond_**,pthread_mutex_t* **_mutex_**,const struct timespec* **_abstime_**);
-    + pthread_cond_wait 和 pthread_cond_timewait 无其他差异，除了后者指定了时间限制
-    + 当调用pthread_cond_wait后，顺序执行1.解锁互斥量mutex 2.阻塞线程，直至收到另一线程的cond信号 3.重新锁定mutex
-    + pthread_cond_wait应包含于while条件判断的循环中。线程醒来后会执行处于条件判断后的指令，这时应重新检查条件，正确则执行循环外的，不正确应重新调用wait挂起
+    + **_int_** pthread_cond_timewait(pthread_cond_t* **_cond_**,pthread_mutex_t* **_mutex_**,const struct timespec* **_abstime_**);
+        + pthread_cond_wait 和 pthread_cond_timewait 无其他差异，除了后者指定了时间限制
+        + 当调用pthread_cond_wait后，顺序执行1.解锁互斥量mutex 2.阻塞线程，直至收到另一线程的cond信号 3.重新锁定mutex
+        + pthread_cond_wait应包含于while条件判断的循环中。线程醒来后会执行处于条件判断后的指令，这时应重新检查条件，正确则执行循环外的，不正确应重新调用wait挂起
 ## **_DEMO_**
 + demo 1 : 创建1000个线程运行20秒，统计每个线程抢到锁的次数
 ```
