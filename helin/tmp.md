@@ -1,4 +1,4 @@
-##云图开发环境概览
+## 云图开发环境概览
 ![avatar](picture/overview.png)
 
 + 编译机
@@ -29,5 +29,5 @@
 		+ ./service_cfg：存放整个工程共享的配置文件，这里面env.conf会被各个子微服务的配置文件所引用，env.conf存放一些mysql redis配置
 	+ /sf/scloud/var/log：这台机器上部署的各个服务的日志目录
 	
-##云端易部署项目接口概览
+## 云端易部署项目接口概览
 ![avatar](picture/deploy.png)
