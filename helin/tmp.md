@@ -31,3 +31,13 @@
 	
 ## 云端易部署项目接口概览
 ![avatar](picture/deploy.png)
+
+## 云端易部署项目简介
++ Beego web框架
+	+ beego文档链接 ： https://beego.me/docs/intro/
+	+ beego注意事项 ： beego仅对自身框架进行了painc捕获和recover ，对于数据库操作事务操作并无recover，因此操作事务的函数需要自定义	recover函数 进行事务的rollback，否则会出现锁表问题
++ MVC代码结构
+	+ Controller ：逻辑控制目录，定义了服务的逻辑操作
+	+ Models：数据库操作目录，主要负责数据库的CRUD操作
+	+ VIEW ： 该项目属于API 服务，暂无VIEW模块
+	+ ROUTER ：包含了服务定义的所有接口
